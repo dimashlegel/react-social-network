@@ -3,11 +3,12 @@ import classes from './Post.module.scss';
 import ava from './../../../images/user-placeholder.png';
 
 
-const Post = () => {
+const Post = (props) => {
 	return (
 		<div className={classes.item}>
 			<img src={ava} alt=""/>
-			<div>post 1</div>
+			{props.message}
+			<div>like</div>
 		</div>
 	)
 }
