@@ -1,11 +1,11 @@
-# My helper for react
+# `My helper for react`
 
-## Css module
+## `Css module`
 
 ### 1. Few classes in one element
 #### {\`${obj.class1} ${obj.class2}\`}
 
-## Routing
+## `Routing`
 
 ### 1. Wrap app in `<BrowserRouter>`
 ### 2. Use `Route` with `path` and `component`
@@ -15,5 +15,7 @@
 			<Route path='/profile' component={Profile} />
 		</div>
 	</BrowserRouter>
-### 3. Navigation menu item `<a href="/profile">Profile</a>`
+### 3. Navigation menu item `<a href="/profile">Profile</a>` - will reload page
+`or`
+### 4. Use `NavLink` menu item `<NavLink to="/profile" activeClassName={classes.active}>Profile</NavLink>` - change page without reload
 
