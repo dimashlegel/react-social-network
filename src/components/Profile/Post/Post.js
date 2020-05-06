@@ -6,9 +6,9 @@ import ava from './../../../images/user-placeholder.png';
 const Post = (props) => {
 	return (
 		<div className={classes.item}>
-			<img src={ava} alt=""/>
+			<img src={ava} alt="" />
 			{props.message}
-			<div>like</div>
+			<div>like {props.likes}</div>
 		</div>
 	)
 }
