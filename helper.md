@@ -3,7 +3,7 @@
 ## `Css module`
 
 ### 1. Few classes in one element
-#### {\`${obj.class1} ${obj.class2}\`}
+#### {\`${obj.class1} ${obj.class2}\`} `or` {classes.dialogs__item + ' ' + classes.active}
 
 ## `Routing`
 

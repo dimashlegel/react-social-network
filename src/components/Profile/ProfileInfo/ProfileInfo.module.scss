@@ -1,0 +1,15 @@
+.profile {
+	padding: 10px;
+	&__banner {
+		height: 300px;
+		background-image: url(https://img.redbull.com/images/c_crop,x_177,y_0,h_1067,w_1423/c_fill,w_1030,h_687/q_auto,f_auto/redbullcom/2014/09/16/1331678850531_2/laurie-towner-huge-wave-ship-stern-bluff);
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	&__avatar {
+		img {
+			width: 50px;
+		}
+	}
+	&__info {}
+}
