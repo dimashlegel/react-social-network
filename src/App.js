@@ -8,17 +8,16 @@ import { Route, BrowserRouter } from 'react-router-dom';
 
 const App = (props) => {
 
+
 	return (
 		<BrowserRouter>
 			<div className="app-wrapper">
 				<Header />
 				<Navbar />
 				<div className="app-wrapper-content">
-					{/* <Route path='/dialogs' component={() => <Dialogs dialogsData={props.data.dialogsData} messagesData={props.data.messagesData} />} />
-					<Route path='/profile' component={() => <Profile postsData={props.data.postsData} />} /> */}
 
-					<Route path='/dialogs' render={() => <Dialogs dialogsData={props.data.dialogsData} messagesData={props.data.messagesData} />} />
-					<Route path='/profile' render={() => <Profile postsData={props.data.postsData} />} />
+					<Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} />} />
+					<Route path='/profile' render={() => <Profile state={props.state.profilePage} />} />
 
 					{/* <Route path='/news' component={News} />
 				<Route path='/music' component={Music} />

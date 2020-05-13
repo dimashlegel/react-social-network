@@ -2,10 +2,8 @@ import React from 'react';
 import classes from './MyPosts.module.scss';
 import Post from './Post/Post';
 
-
 const MyPosts = (props) => {
-
-	let postItems = props.postsData.map(postItem => <Post message={postItem.post} likes={postItem.likesCount} />)
+	let postItems = props.posts.map(postItem => <Post message={postItem.post} likes={postItem.likesCount} />);
 	return (
 		<div className={classes.posts}>
 			<h3>My Posts</h3>

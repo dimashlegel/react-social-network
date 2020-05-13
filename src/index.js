@@ -3,38 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-
-let postsData = [
-	{ post: 'Hi, what are you doing?', id: 1, likesCount: 1, },
-	{ post: 'I am rest', id: 2, likesCount: 12, },
-	{ post: 'How are you?', id: 3, likesCount: 3, },
-	{ post: 'OK', id: 4, likesCount: 41, },
-];
-
-let dialogsData = [
-	{ name: 'Dima', id: 1 },
-	{ name: 'Anna', id: 2 },
-	{ name: 'Rulia', id: 3 },
-	{ name: 'Alina', id: 4 },
-];
-
-let messagesData = [
-	{ message: 'Hi', id: 1 },
-	{ message: 'Hello', id: 2 },
-	{ message: 'How are you?', id: 3 },
-	{ message: 'OK', id: 4 },
-];
-
-let data = {
-	postsData,
-	dialogsData,
-	messagesData
-}
+import state from './redux/state';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App data={data} />
+		<App state={state} />
 	</React.StrictMode>,
 	document.getElementById('root')
 );
