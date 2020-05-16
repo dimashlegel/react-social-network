@@ -1,11 +1,14 @@
+import { rerenderEntireTree } from "../render";
+
 let state = {
 	profilePage: {
 		posts: [
-			{ post: 'Hi, what are you doing?', id: 1, likesCount: 1, },
-			{ post: 'I am rest', id: 2, likesCount: 12, },
-			{ post: 'How are you?', id: 3, likesCount: 3, },
-			{ post: 'OK', id: 4, likesCount: 41, },
+			{ id: 1, message: 'Hi, what are you doing?', likesCount: 1, },
+			{ id: 2, message: 'I am rest', likesCount: 12, },
+			{ id: 3, message: 'How are you?', likesCount: 3, },
+			{ id: 4, message: 'OK', likesCount: 41, },
 		],
+		newPostText: 'it-kamasutra.com',
 	},
 	dialogsPage: {
 		messages: [
@@ -23,5 +26,22 @@ let state = {
 	},
 	sidebar: {},
 };
+
+export let addPost = () => {
+	let newPost = {
+		id: 5,
+		message: state.profilePage.newPostText,
+		likesCount: 0
+	};
+
+	state.profilePage.posts.push(newPost);
+	state.profilePage.newPostText = '';
+	rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newText) => {
+	state.profilePage.newPostText = newText;
+	rerenderEntireTree(state);
+}
 
 export default state;
