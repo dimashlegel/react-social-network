@@ -17,9 +17,16 @@
 			<Route path='/profile' component={Profile} /> - possibility to transfer data to component in Route
 		</div>
 	</BrowserRouter>
-### `or` with `render` - give possibility to transfer data to component in Route
+### or with "render" - give possibility to transfer data to component in Route
 	<Route path='/profile' render={() => <Profile postsData={props.data.postsData} />} /> 
 ### 3. Navigation menu item `<a href="/profile">Profile</a>` - will reload page
 ### `or`
 ### 4. Use `NavLink` menu item `<NavLink to="/profile" activeClassName={classes.active}>Profile</NavLink>` - change page without reload
 
+## <span style="color: gold;">`React ref`</span> 
+
+	let newPostElement = React.createRef();
+	let addPost = () => {
+		console.log(newPostElement.current.value);
+	}
+`- create references on DOM element `

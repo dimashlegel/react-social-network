@@ -20,7 +20,8 @@ let state = {
 			{ name: 'Rulia', id: 3 },
 			{ name: 'Alina', id: 4 },
 		],
-	}
+	},
+	sidebar: {},
 };
 
 export default state;
