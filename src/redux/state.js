@@ -1,4 +1,7 @@
-import { rerenderEntireTree } from "../render";
+
+let rerenderEntireTree = () => {
+	console.log('state changed');
+}
 
 let state = {
 	profilePage: {
@@ -27,6 +30,8 @@ let state = {
 	},
 	sidebar: {},
 };
+
+window.state = state;
 
 export let addPost = () => {
 	let newPost = {
@@ -58,6 +63,10 @@ export let addNewMessage = () => {
 	state.dialogsPage.messages.push(newMessage);
 	state.dialogsPage.newMessageText = '';
 	rerenderEntireTree(state);
+}
+
+export let subscribe = (observer) => {
+	rerenderEntireTree = observer;
 }
 
 export default state;
