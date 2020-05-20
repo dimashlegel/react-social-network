@@ -1,72 +1,81 @@
+let store = {
 
-let rerenderEntireTree = () => {
-	console.log('state changed');
-}
-
-let state = {
-	profilePage: {
-		posts: [
-			{ id: 1, message: 'Hi, what are you doing?', likesCount: 1, },
-			{ id: 2, message: 'I am rest', likesCount: 12, },
-			{ id: 3, message: 'How are you?', likesCount: 3, },
-			{ id: 4, message: 'OK', likesCount: 41, },
-		],
-		newPostText: 'it-kamasutra.com',
+	_callSubscriber() {
+		console.log('state changed');
 	},
-	dialogsPage: {
-		messages: [
-			{ id: 1, message: 'Hi' },
-			{ id: 2, message: 'Hello' },
-			{ id: 3, message: 'How are you?' },
-			{ id: 4, message: 'OK' },
-		],
-		dialogs: [
-			{ id: 1, name: 'Dima' },
-			{ id: 2, name: 'Anna' },
-			{ id: 3, name: 'Rulia' },
-			{ id: 4, name: 'Alina' },
-		],
-		newMessageText: 'New message',
+
+	_state: {
+		profilePage: {
+			posts: [
+				{ id: 1, message: 'Hi, what are you doing?', likesCount: 1, },
+				{ id: 2, message: 'I am rest', likesCount: 12, },
+				{ id: 3, message: 'How are you?', likesCount: 3, },
+				{ id: 4, message: 'OK', likesCount: 41, },
+			],
+			newPostText: 'it-kamasutra.com',
+		},
+		dialogsPage: {
+			messages: [
+				{ id: 1, message: 'Hi' },
+				{ id: 2, message: 'Hello' },
+				{ id: 3, message: 'How are you?' },
+				{ id: 4, message: 'OK' },
+			],
+			dialogs: [
+				{ id: 1, name: 'Dima' },
+				{ id: 2, name: 'Anna' },
+				{ id: 3, name: 'Rulia' },
+				{ id: 4, name: 'Alina' },
+			],
+			newMessageText: 'New message',
+		},
+		sidebar: {},
 	},
-	sidebar: {},
-};
 
-window.state = state;
+	getState() {
+		console.log('get state');
+		
+		return this._state;
+	},
 
-export let addPost = () => {
-	let newPost = {
-		id: 5,
-		message: state.profilePage.newPostText,
-		likesCount: 0
-	};
+	addPost() {
+		let newPost = {
+			id: 5,
+			message: this._state.profilePage.newPostText,
+			likesCount: 0
+		};
+		this._state.profilePage.posts.push(newPost);
+		this._state.profilePage.newPostText = '';
+		this._callSubscriber(this._state);
+	},
 
-	state.profilePage.posts.push(newPost);
-	state.profilePage.newPostText = '';
-	rerenderEntireTree(state);
-}
+	updateNewPostText(newText) {
+		console.log(newText);
 
-export let updateNewPostText = (newText) => {
-	state.profilePage.newPostText = newText;
-	rerenderEntireTree(state);
-}
+		this._state.profilePage.newPostText = newText;
+		this._callSubscriber(this._state);
+	},
 
-export let updateNewMessageText = (newMessage) => {
-	state.dialogsPage.newMessageText = newMessage;
-	rerenderEntireTree(state);
-}
+	updateNewMessageText(newMessage) {
+		this._state.dialogsPage.newMessageText = newMessage;
+		this._callSubscriber(this._state);
+	},
 
-export let addNewMessage = () => {
-	let newMessage = {
-		id: 1,
-		message: state.dialogsPage.newMessageText,
+	addNewMessage() {
+		let newMessage = {
+			id: 1,
+			message: this._state.dialogsPage.newMessageText,
+		}
+		this._state.dialogsPage.messages.push(newMessage);
+		this._state.dialogsPage.newMessageText = '';
+		this._callSubscriber(this._state);
+	},
+
+	subscribe(observer) {
+		this._callSubscriber = observer;
 	}
-	state.dialogsPage.messages.push(newMessage);
-	state.dialogsPage.newMessageText = '';
-	rerenderEntireTree(state);
 }
 
-export let subscribe = (observer) => {
-	rerenderEntireTree = observer;
-}
+window.store = store;
 
-export default state;
+export default store;

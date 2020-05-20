@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './Post.module.scss';
+import styles from './Post.module.scss';
 import ava from './../../../../images/user-placeholder.png';
 
 
 const Post = (props) => {
 	return (
-		<div className={classes.item}>
+		<div className={styles.item}>
 			<img src={ava} alt="" />
 			{props.message}
 			<div>like {props.likes}</div>
