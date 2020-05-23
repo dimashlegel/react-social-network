@@ -4,18 +4,20 @@ import classes from './Dialogs.module.scss';
 import Message from './Message/Message';
 
 const Dialogs = (props) => {
-// debugger;
+	// debugger;
 	let dialogsElements = props.state.dialogs.map(dialog => <Dialog name={dialog.name} id={'/' + dialog.id} />);
 	let messageElements = props.state.messages.map(message => <Message message={message.message} id={message.id} />);
 
 	let newMessage = React.createRef();
 
 	let addMessage = () => {
-		props.addNewMessage();
+		// props.addNewMessage();
+		props.dispatch({ type: 'ADD-NEW-MESSAGE' });
 	}
-	
+
 	let onMessageChange = () => {
-		props.updateNewMessageText(newMessage.current.value)
+		// props.updateNewMessageText(newMessage.current.value)
+		props.dispatch({ type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: newMessage.current.value });
 	}
 
 	return (
