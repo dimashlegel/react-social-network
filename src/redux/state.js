@@ -1,7 +1,7 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 let store = {
 
 	_callSubscriber() {
@@ -37,7 +37,6 @@ let store = {
 	},
 
 	getState() {
-		console.log('get state');
 		return this._state;
 	},
 	subscribe(observer) {
@@ -45,42 +44,14 @@ let store = {
 	},
 
 	dispatch(action) {
-		if (action.type === ADD_POST) {
-			let newPost = {
-				id: 5,
-				message: this._state.profilePage.newPostText,
-				likesCount: 0
-			};
-			this._state.profilePage.posts.push(newPost);
-			this._state.profilePage.newPostText = '';
-			this._callSubscriber(this._state);
+		this._state.profilePage = profileReducer(this._state.profilePage, action);
+		this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+		this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-		} else if (action.type === UPDATE_NEW_POST_TEXT) {
-			this._state.profilePage.newPostText = action.newText;
-			this._callSubscriber(this._state);
-
-		} else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-			this._state.dialogsPage.newMessageText = action.newMessage;
-			this._callSubscriber(this._state);
-
-		} else if (action.type === ADD_NEW_MESSAGE) {
-			let newMessage = {
-				id: 1,
-				message: this._state.dialogsPage.newMessageText,
-			}
-			this._state.dialogsPage.messages.push(newMessage);
-			this._state.dialogsPage.newMessageText = '';
-			this._callSubscriber(this._state);
-		}
+		this._callSubscriber(this._state);
 	}
 
 }
-
-
-export const addPostActionCreator = () => ({ type: 'ADD-POST' });
-export const updateNewPostTextActionCreator = (text) => ({ type: 'UPDATE-NEW-POST-TEXT', newText: text });
-export const addMessageActionCreator = () => ({ type: 'ADD-NEW-MESSAGE' });
-export const onMessageChangeActionCreator = (text) => ({ type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: text });
 
 window.store = store;
 

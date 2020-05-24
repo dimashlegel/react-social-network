@@ -1,8 +1,9 @@
 import React from 'react';
+import { addMessageActionCreator, onMessageChangeActionCreator } from '../../redux/dialogs-reducer';
 import Dialog from './Dialog/Dialog';
 import classes from './Dialogs.module.scss';
 import Message from './Message/Message';
-import { addMessageActionCreator, onMessageChangeActionCreator } from '../../redux/state';
+
 
 const Dialogs = (props) => {
 	// debugger;
