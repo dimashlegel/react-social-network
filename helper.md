@@ -30,3 +30,20 @@
 		console.log(newPostElement.current.value);
 	}
 `- create references on DOM element `
+
+## <span style="color: gold;">`Context`</span> 
+### 1. Create variable with context:
+	const StoreContext = React.createContext(null);
+### 2. Wrap App by Provider :
+		<StoreContext.Provider value={store}>
+			<App />
+		</StoreContext.Provider>
+### 3. Use in component
+		const MyPostsContainer = () => {
+			return (<StoreContext.Consumer>
+					{(store) => {
+							let state = store.getState();
+							return <MyPosts posts={state.profilePage.posts} />
+						}}
+				</StoreContext.Consumer>
+			)}
