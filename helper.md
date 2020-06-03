@@ -34,7 +34,7 @@
 ## <span style="color: gold;">`Context`</span> 
 ### 1. Create variable with context:
 	const StoreContext = React.createContext(null);
-### 2. Wrap App by Provider :
+### 2. Wrap `App` by .Provider :
 		<StoreContext.Provider value={store}>
 			<App />
 		</StoreContext.Provider>
@@ -47,3 +47,25 @@
 						}}
 				</StoreContext.Consumer>
 			)}
+
+## <span style="color: gold;">`React-redux`</span> 
+### 1. Wrap `App` by `Provider` from `react-redux`
+	<Provider store={store}>	<App />	</Provider> 
+### 2. Use `connect` function with two calls
+	const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
+- mapStateToProps(state) - function wich return object with state
+- mapDispatchToProps(dispath) - function wich return object with methods
+- MyPosts - render component
+
+
+
+
+
+
+# <span style="color: gold;">`GIT`</span> 
+
+### gitk --all&     (открыть графическую оболочку гита, чтобы позырить все коммиты)
+### ctrl + insert (копировать в буфер обмена) 
+### shift + insert (вставить из буфера обмена) 
+### git checkout commit-number (переключится на нужный коммит)
