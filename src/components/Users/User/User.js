@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './User.module.scss';
+import userPlaceholder from '../../../assets/images/user-placeholder.png'
 
 const User = (props) => {
-	// console.log(props);
-	
+
 	return (
 		<div className={styles.user}>
 			<span className={styles.user__left}>
 				<div className={styles.user__ava}>
-					<img src={props.photoUrl} alt="" />
+					<img src={props.photos.small != null ? props.photos.small : userPlaceholder} alt="" />
 				</div>
 				<div className={styles.user__ava}>
 					{props.followed
@@ -19,12 +19,12 @@ const User = (props) => {
 			</span>
 			<span className={styles.user__right}>
 				<span>
-					<div>{props.fullname}</div>
+					<div>{props.name}</div>
 					<div>{props.status}</div>
 				</span>
 				<span>
-					<div>{props.location.country}</div>
-					<div>{props.location.city}</div>
+					<div>{'props.location.country'}</div>
+					<div>{'props.location.city'}</div>
 				</span>
 			</span>
 		</div >
