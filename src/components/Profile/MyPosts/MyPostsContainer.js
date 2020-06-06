@@ -35,7 +35,6 @@ const mapDispatchToProps = (dispatch) => {
 		addPost: () => dispatch(addPostActionCreator()),
 		updateNewPostText: (newText) => dispatch(updateNewPostTextActionCreator(newText)),
 	}
-
 }
 
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);

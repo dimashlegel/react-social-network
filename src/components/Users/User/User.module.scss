@@ -1,0 +1,13 @@
+.user {
+	&__left {
+		display: inline-block;
+	}
+	&__right {
+		display: inline-block;
+	}
+	&__ava {
+		& img {
+			max-width: 40px;
+		}
+	}
+}
