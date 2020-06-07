@@ -1,43 +1,55 @@
-import React from 'react';
-import User from './User/User';
 import * as axios from 'axios';
+import React from 'react';
+import userPlaceholder from '../../assets/images/user-placeholder.png';
+import styles from './Users.module.scss';
 
-const Users = (props) => {
+class Users extends React.Component {
 
-	let follow = (id) => {
-		props.follow(id);
-	};
-
-	let unfollow = (id) => {
-		props.unfollow(id);
-	};
-
-	if (props.users.length === 0) {
-
+	constructor(props) {
+		super(props);
+		// if (this.props.users.length === 0) {
 		axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-			props.setUsers(response.data.items);
+			this.props.setUsers(response.data.items);
 		});
-
-		// [
-		// 	{ id: 1, followed: true, photoUrl: 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg', fullname: 'Dima', status: 'Ok', location: { country: 'Ukraine', city: 'Kyiv' }, },
-		// 	{ id: 2, followed: true, photoUrl: 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg', fullname: 'Sara', status: 'Mazal Tov', location: { country: 'Israel', city: 'Bat Yam' }, },
-		// 	{ id: 3, followed: false, photoUrl: 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg', fullname: 'Jack', status: 'Protest', location: { country: 'USA', city: 'New York' }, },
-		// 	{ id: 4, followed: false, photoUrl: 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg', fullname: 'Anna', status: 'Wife', location: { country: 'Ukraine', city: 'Kyiv' }, },
-		// ]
+		// }
 	}
 
-	let users = props.users.map((user) => (
-		<User key={user.id} photos={user.photos} name={user.name} followed={user.followed} status={user.status}
-			follow={follow} unfollow={unfollow} id={user.id} />
-	));
+	getUsers = () => { };
 
-
-
-	return (
-		<div>
-			{users}
-		</div>
-	)
+	render() {
+		return (
+			<div>
+				{/* <button onClick={this.getUsers}>Get Users</button> */}
+				{
+					this.props.users.map((user) => (
+						<div className={styles.user}>
+							<span className={styles.user__left}>
+								<div className={styles.user__ava}>
+									<img src={user.photos.small != null ? user.photos.small : userPlaceholder} alt="" />
+								</div>
+								<div className={styles.user__ava}>
+									{user.followed
+										? <button onClick={() => { this.props.unfollow(user.id) }}>Unfollow</button>
+										: <button onClick={() => { this.props.follow(user.id) }}>Follow</button>
+									}
+								</div>
+							</span>
+							<span className={styles.user__right}>
+								<span>
+									<div>{user.name}</div>
+									<div>{user.status}</div>
+								</span>
+								<span>
+									<div>{'user.location.country'}</div>
+									<div>{'user.location.city'}</div>
+								</span>
+							</span>
+						</div >
+					))
+				}
+			</div>
+		)
+	}
 }
 
 export default Users;

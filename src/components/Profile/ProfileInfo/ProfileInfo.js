@@ -1,5 +1,5 @@
 import React from 'react';
-import ava from './../../../images/user-placeholder.png';
+import ava from '../../../assets/images/user-placeholder.png';
 import styles from './ProfileInfo.module.scss';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Post.module.scss';
-import ava from './../../../../images/user-placeholder.png';
+import ava from '../../../../assets/images/user-placeholder.png';
 
 
 const Post = (props) => {
