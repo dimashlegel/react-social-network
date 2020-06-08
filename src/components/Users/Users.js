@@ -5,24 +5,22 @@ import styles from './Users.module.scss';
 
 class Users extends React.Component {
 
-	constructor(props) {
-		super(props);
-		// if (this.props.users.length === 0) {
+	// constructor(props) {
+	// 	super(props);
+	// }
+
+	componentDidMount() {
 		axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
 			this.props.setUsers(response.data.items);
 		});
-		// }
 	}
-
-	getUsers = () => { };
 
 	render() {
 		return (
 			<div>
-				{/* <button onClick={this.getUsers}>Get Users</button> */}
 				{
 					this.props.users.map((user) => (
-						<div className={styles.user}>
+						<div className={styles.user} key={user.id}>
 							<span className={styles.user__left}>
 								<div className={styles.user__ava}>
 									<img src={user.photos.small != null ? user.photos.small : userPlaceholder} alt="" />
