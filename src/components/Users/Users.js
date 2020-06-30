@@ -3,6 +3,8 @@ import * as axios from 'axios';
 import styles from './Users.module.scss';
 import userPlaceholder from '../../assets/images/user-placeholder.png';
 import { NavLink } from 'react-router-dom';
+import usersApi from '../../api/api';
+
 
 const Users = (props) => {
 	// debugger;
@@ -31,27 +33,17 @@ const Users = (props) => {
 						<div className={styles.user__ava}>
 							{user.followed
 								? <button onClick={() => {
-									axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-										withCredentials: true,
-										headers: {
-											"API-KEY": "d2a1ada9-5724-480a-a3e9-feac2410c0d6"
-										},
-									})
+									usersApi.unfollow(user.id)
 										.then(response => {
-											if (response.data.resultCode === 0) {
+											if (response.resultCode === 0) {
 												props.unfollow(user.id)
 											}
 										})
 								}}>Unfollow</button>
 								: <button onClick={() => {
-									axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-										withCredentials: true,
-										headers: {
-											"API-KEY": "d2a1ada9-5724-480a-a3e9-feac2410c0d6"
-										},
-									})
+									usersApi.follow(user.id)
 										.then(response => {
-											if (response.data.resultCode === 0) {
+											if (response.resultCode === 0) {
 												props.follow(user.id)
 											}
 										});
