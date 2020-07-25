@@ -42,17 +42,21 @@ const Users = (props) => {
             <div className={styles.user__ava}>
               {user.followed ? (
                 <button
-                  disabled={props.followingInProgress.some(id => id === user.id)}
+                  disabled={props.followingInProgress.some(
+                    (id) => id === user.id
+                  )}
                   onClick={() => {
-                    props.unfollow(user.id);       
+                    props.unfollow(user.id);
                   }}
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
-								disabled={props.followingInProgress.some(id => id === user.id)}
-								onClick={() => {
+                  disabled={props.followingInProgress.some(
+                    (id) => id === user.id
+                  )}
+                  onClick={() => {
                     props.follow(user.id);
                   }}
                 >
