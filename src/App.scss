@@ -1,7 +1,7 @@
 .app-wrapper {
 	display: grid;
 	grid-template-rows: 80px 1fr;
-	grid-template-columns: 2fr 10fr;
+	grid-template-columns: minmax(150px, 2fr) minmax(200px, 10fr);
 	gap: 10px;
 	grid-template-areas:
 		"header header"
@@ -15,4 +15,6 @@
 .app-wrapper-content {
 	grid-area: content;
 	background-color: green;
+	white-space: normal;
+	word-break: break-all;
 }
