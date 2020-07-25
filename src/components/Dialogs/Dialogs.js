@@ -1,36 +1,44 @@
-import React from 'react';
-import Dialog from './Dialog/Dialog';
-import styles from './Dialogs.module.scss';
-import Message from './Message/Message';
-
+import React from "react";
+import Dialog from "./Dialog/Dialog";
+import styles from "./Dialogs.module.scss";
+import Message from "./Message/Message";
+import { Redirect } from "react-router-dom";
 
 const Dialogs = (props) => {
+  let dialogsElements = props.dialogsPage.dialogs.map((dialog) => (
+    <Dialog name={dialog.name} key={dialog.id} id={"/" + dialog.id} />
+  ));
+  let messageElements = props.dialogsPage.messages.map((message) => (
+    <Message message={message.message} key={message.id} id={message.id} />
+  ));
 
-	let dialogsElements = props.dialogsPage.dialogs.map(dialog => <Dialog name={dialog.name} key={dialog.id} id={'/' + dialog.id} />);
-	let messageElements = props.dialogsPage.messages.map(message => <Message message={message.message} key={message.id} id={message.id} />);
+  let onAddMessage = () => {
+    props.addMessage();
+  };
 
-	let onAddMessage = () => {
-		props.addMessage();
-	}
+  let onMessageChangeText = (e) => {
+    props.onMessageChange(e.target.value);
+  };
 
-	let onMessageChangeText = (e) => {
-		props.onMessageChange(e.target.value);
-	}
+  if (!props.isAuth) {
+    return <Redirect to={"/login"} />;
+  }
 
-	return (
-		<div className={styles.dialogs}>
-			<div className={styles.dialogs__items}>
-				{dialogsElements}
-			</div>
-			<div className={styles.dialogs__messages}>
-				{messageElements}
-				<div>
-					<textarea value={props.dialogsPage.newMessageText} onChange={onMessageChangeText} placeholder='Enter new message'></textarea>
-				</div>
-				<button onClick={onAddMessage}>Add message</button>
-			</div>
-		</div>
-	)
-}
+  return (
+    <div className={styles.dialogs}>
+      <div className={styles.dialogs__items}>{dialogsElements}</div>
+      <div className={styles.dialogs__messages}>
+        {messageElements}
+        <div>
+          <textarea
+            value={props.dialogsPage.newMessageText}
+            onChange={onMessageChangeText}
+            placeholder="Enter new message"></textarea>
+        </div>
+        <button onClick={onAddMessage}>Add message</button>
+      </div>
+    </div>
+  );
+};
 
-export default Dialogs; 
+export default Dialogs;

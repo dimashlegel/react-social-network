@@ -1,16 +1,15 @@
-import React from 'react';
-import styles from './Profile.module.scss';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
-
+import React from "react";
+import styles from "./Profile.module.scss";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
-
-	return (
-		<div className={styles.profile}>
-			<ProfileInfo profile={props.profile}/>
-			<MyPostsContainer  />
-		</div>)
-}
+  return (
+    <div className={styles.profile}>
+      <ProfileInfo profile={props.profile} />
+      <MyPostsContainer />
+    </div>
+  );
+};
 
 export default Profile;
